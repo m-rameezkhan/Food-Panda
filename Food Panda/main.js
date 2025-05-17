@@ -57,3 +57,11 @@ window.onload = function() {
         showLoginWidgets();
     }
 };
+
+function closeUpperNav() {
+    let upperNav = document.getElementById("navbar-upper")
+    let mainContent = document.getElementById('main-signup')
+    upperNav.style.height = '0px'
+    mainContent.style.marginTop = '60px'
+    mainContent.style.height = "calc(100vh - 60px)"
+}

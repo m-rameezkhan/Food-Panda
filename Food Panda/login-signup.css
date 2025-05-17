@@ -1,0 +1,88 @@
+:root {
+    --background-color: #e21b70;
+    --dark-backdround-color: #be165f;
+}
+
+main {
+    margin-top: 80px;
+}
+
+.form {
+    /* height: calc(100vh - 80px); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.heading {
+    font-family: "Roboto";
+    margin: 10px 0px;
+    color: black;
+}
+
+.inputs {
+    /* border: 2px solid black; */
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-shadow: 0 0 8px 3px #cfcfcf;
+}
+
+.inputs>input {
+    width: 90%;
+    background-color: #ffd3e6;
+    border-radius: 0px;
+}
+
+.inputs>select {
+    width: 90%;
+    height: 40px;
+    outline: none;
+    border: none;
+    background-color: #ffd3e6;
+    margin: 5px 0px;
+    border-radius: 0px;
+    padding: 10px;
+}
+
+.inputs>select:focus {
+    outline: 2px solid rgb(255, 134, 154);
+}
+
+.btn{
+    width: 145px;
+    height: 35px;
+}
+
+.signup-btn-admin {
+    width: 90%;
+    height: 40px;
+    margin: 5px 0px;
+    border-radius: 0px;
+}
+
+.signup-btn-admin:hover {
+    transform: scale(1);
+}
+
+.already-signup {
+    font-family: "Inter";
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin: 5px 0px;
+}
+
+.already-signup>p {
+    margin: 5px 0px;
+}
+
+.login-span>a {
+    color: rgb(0, 0, 174);
+    cursor: pointer;
+    /* text-decoration-skip-ink: none; */
+}

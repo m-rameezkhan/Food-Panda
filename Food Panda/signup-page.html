@@ -26,9 +26,8 @@
             align-items: center;
             overflow: hidden;
             height: calc(100vh - 130px);
-            /* Full viewport height minus navbar height */
+            transition: margin 0.3s ease;
         }
-
 
         .left-1 {
             width: 50%;
@@ -41,14 +40,17 @@
             align-items: center;
             justify-content: center
         }
-        .left-1 > h1{
+
+        .left-1>h1 {
             font-size: 30px;
             margin-bottom: 20px;
         }
-        .left-1 > p{
+
+        .left-1>p {
             font-size: 18px;
         }
-        .left-1 > button{
+
+        .left-1>button {
             padding: 10px;
             margin-top: 20px;
             background-color: #cd1c69;
@@ -59,7 +61,8 @@
             justify-content: center;
             font-size: 16px;
         }
-        .left-1 > button{
+
+        .left-1>button {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -67,6 +70,7 @@
             text-decoration: none;
 
         }
+
         .right-1 {
             width: 50%;
             padding: 20px;
@@ -74,43 +78,31 @@
             flex-direction: column;
             align-items: center;
         }
-        .inputs{
-            display: flex;
-            flex-direction: column;
-            width: 80%;
-        }
-        .inputs > p{
+
+        .inputs>p {
             text-align: center;
             margin: 10px 0px;
         }
-        .inputs > input{
-            height: 40px;
-            margin: 5px 0px;
-            border: none;
-            background-color: rgb(232, 240, 254);
-            border-radius: 10px;
-            padding: 10px;
-            outline: none;
-        }
-        .inputs > input:focus{
-            outline: 2px solid rgb(255, 134, 154);
-        }
+
+
         .signup-heading {
             text-align: center;
             margin-bottom: 30px;
         }
 
-        .signup-btn2{
+        .signup-btn2 {
             height: 40px;
             border-radius: 10px;
             color: white;
             font-weight: 600;
             font-size: 18px;
         }
-        .social-media-img img{
+
+        .social-media-img img {
             margin: 0px 10px;
         }
-        .hide{
+
+        .hide {
             display: none !important;
         }
     </style>
@@ -118,16 +110,16 @@
 
 <body>
     <nav class="nav">
-        <div class="navbar-upper">
+        <div class="navbar-upper" id="navbar-upper">
             <img class="icon nav-img" src="Images/ic-rider-icon.svg" alt="">
             <div class="signup-business signup">
-                <p>SIGNUP FOR BUSINESS ACCOUNT</p>
+                <p><a href="">LOGIN AS ADMIN</a></p>
             </div>
-            <div class="signup-restaurant signup">
-                <p>SIGNUP TO BE A RESTAURANT PARTNER
-                <p>
+            <div class="signup-restaurant signup" onclick="adminSignupBtn()">
+                <p><a href="./adminSignup.html">SIGNUP TO BE A RESTAURANT PARTNER</a>
+                <p></p>
             </div>
-            <div class="cross">
+            <div class="cross" onclick="closeUpperNav()">
                 <i class="fas fa-times cross-icon"></i>
             </div>
         </div>
@@ -143,13 +135,15 @@
 
         </div>
     </nav>
-    <main class="main">
+    <main class="main" id="main-signup">
         <div class="left-1">
             <h1>Come join us!</h1>
             <p>We are exited to have you here. If you haven't already, create an account to get exclusive offers,
                 rewards, and discounts</p>
-            <button onclick="loginBtn()" class="signup-btn2 signup-btn hide signupWdgt">Already have an account? Login.</button>
-            <button onclick="signupBtn()" class="signup-btn2 signup-btn loginWdgt">Don't have an account? Signup.</button>
+            <button onclick="loginBtn()" class="signup-btn2 signup-btn hide signupWdgt">Already have an account?
+                Login.</button>
+            <button onclick="signupBtn()" class="signup-btn2 signup-btn loginWdgt">Don't have an account?
+                Signup.</button>
         </div>
         <div class="right-1">
             <h1 class="signup-heading signupWdgt hide">Signup</h1>
@@ -158,7 +152,8 @@
                 <input type="text" class="hide signupWdgt" name="" placeholder="Enter your name" id="name">
                 <input type="text" name="" placeholder="Enter your email" id="email">
                 <input type="password" name="" placeholder="Enter password" id="password">
-                <input type="password" class="hide signupWdgt" name="" placeholder="Confrim password" id="confrim-password">
+                <input type="password" class="hide signupWdgt" name="" placeholder="Confrim password"
+                    id="confrim-password">
                 <button class="signup-btn2 signup-btn hide signupWdgt">Signup</button>
                 <button class="signup-btn2 loginWdgt signup-btn">Login</button>
                 <p class="hide signupWdgt">or signup with</p>
@@ -171,8 +166,6 @@
             </div>
         </div>
     </main>
-
-
     <script src="main.js"></script>
 </body>
 

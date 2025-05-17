@@ -11,22 +11,21 @@
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Food Panda</title>
+    <title>Home</title>
 </head>
 
-<body>
+<body id="content">
 
     <nav class="nav">
-        <div class="navbar-upper">
+        <div class="navbar-upper" id="navbar-upper">
             <img class="icon nav-img" src="Images/ic-rider-icon.svg" alt="">
             <div class="signup-business signup">
-                <p>SIGNUP FOR BUSINESS ACCOUNT</p>
+                <p><a href="">LOGIN AS ADMIN</a></p>
             </div>
             <div class="signup-restaurant signup" onclick="">
-                <p>SIGNUP TO BE A RESTAURANT PARTNER
-                <p>
+                <p><a href="./adminSignup.html">SIGNUP TO BE A RESTAURANT PARTNER</a><p>
             </div>
-            <div class="cross">
+            <div class="cross" onclick="closeUpperNav()">
                 <i class="fas fa-times cross-icon"></i>
             </div>
         </div>
@@ -44,7 +43,7 @@
 
         </div>
     </nav>
-    <main>
+    <main id="main">
         <div class="section-a">
             <div class="left">
                 <h1 class="main-heading">Enjoy discounts on your first order</h1>
