@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Food Panda</title>
+    <style>
+        :root {
+            --background-color: #e21b70;
+            --dark-backdround-color: #be165f;
+        }
+
+        .main {
+            margin-top: 130px;
+            /* Space for fixed navbar */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            height: calc(100vh - 130px);
+            /* Full viewport height minus navbar height */
+        }
+
+
+        .left-1 {
+            width: 50%;
+            height: 100%;
+            background-color: var(--background-color);
+            padding: 50px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center
+        }
+        .left-1 > h1{
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        .left-1 > p{
+            font-size: 18px;
+        }
+        .left-1 > button{
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #cd1c69;
+            width: 80%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+        .left-1 > button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            text-decoration: none;
+
+        }
+        .right-1 {
+            width: 50%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .inputs{
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+        }
+        .inputs > p{
+            text-align: center;
+            margin: 10px 0px;
+        }
+        .inputs > input{
+            height: 40px;
+            margin: 5px 0px;
+            border: none;
+            background-color: rgb(232, 240, 254);
+            border-radius: 10px;
+            padding: 10px;
+            outline: none;
+        }
+        .inputs > input:focus{
+            outline: 2px solid rgb(255, 134, 154);
+        }
+        .signup-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .signup-btn2{
+            height: 40px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        .social-media-img img{
+            margin: 0px 10px;
+        }
+        .hide{
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="navbar-upper">
+            <img class="icon nav-img" src="Images/ic-rider-icon.svg" alt="">
+            <div class="signup-business signup">
+                <p>SIGNUP FOR BUSINESS ACCOUNT</p>
+            </div>
+            <div class="signup-restaurant signup">
+                <p>SIGNUP TO BE A RESTAURANT PARTNER
+                <p>
+            </div>
+            <div class="cross">
+                <i class="fas fa-times cross-icon"></i>
+            </div>
+        </div>
+        <div class="navbar-down">
+            <div class="logo">
+                <a href="./index.html"><img class="icon" src="Images/logo.png" alt=""></a>
+                <a href="./index.html"><img src="Images/icon.svg" alt=""></a>
+            </div>
+            <div class="buttons">
+                <button class="login-btn btn" onclick="loginBtn()">Log in</button>
+                <button class="signup-btn btn" onclick="signupBtn()">Signup</button>
+            </div>
+
+        </div>
+    </nav>
+    <main class="main">
+        <div class="left-1">
+            <h1>Come join us!</h1>
+            <p>We are exited to have you here. If you haven't already, create an account to get exclusive offers,
+                rewards, and discounts</p>
+            <button onclick="loginBtn()" class="signup-btn2 signup-btn hide signupWdgt">Already have an account? Login.</button>
+            <button onclick="signupBtn()" class="signup-btn2 signup-btn loginWdgt">Don't have an account? Signup.</button>
+        </div>
+        <div class="right-1">
+            <h1 class="signup-heading signupWdgt hide">Signup</h1>
+            <h1 class="signup-heading loginWdgt">Login</h1>
+            <div class="inputs">
+                <input type="text" class="hide signupWdgt" name="" placeholder="Enter your name" id="name">
+                <input type="text" name="" placeholder="Enter your email" id="email">
+                <input type="password" name="" placeholder="Enter password" id="password">
+                <input type="password" class="hide signupWdgt" name="" placeholder="Confrim password" id="confrim-password">
+                <button class="signup-btn2 signup-btn hide signupWdgt">Signup</button>
+                <button class="signup-btn2 loginWdgt signup-btn">Login</button>
+                <p class="hide signupWdgt">or signup with</p>
+                <p class="loginWdgt">or login with</p>
+            </div>
+            <div class="social-media-img">
+                <img src="Images/Facebook_Logo.png" width="30px" alt="">
+                <img src="Images/google-logo.png" width="30px" alt="">
+                <img src="Images/linkedin-logo.png" width="30px" alt="">
+            </div>
+        </div>
+    </main>
+
+
+    <script src="main.js"></script>
+</body>
+
+</html>
