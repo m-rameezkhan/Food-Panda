@@ -1,3 +1,5 @@
+// const { use } = require("react");
+
 let cities = document.getElementById("cities");
 if (cities) {
     const pakistaniCities = [
@@ -15,46 +17,80 @@ if (cities) {
 }
 
 function goBack() {
-    window.location.href = './adminLogin.html'
+    window.location.href = './signupPage.html'
 }
 
-
-function signup(event) {
-    // Prevent page reload on form submission
-    event.preventDefault();
-
-    // Check if the form is valid
-    const form = document.getElementById("restaurantForm");
-    if (!form.checkValidity()) {
-        alert("Please fill out all required fields correctly.");
-        return;
-    }
+function signupAdmin() {
 
     // Get form values
-    let rName = document.querySelector("#r-name").value;
-    let rEmail = document.querySelector("#r-email").value;
-    let rCity = document.querySelector("#cities").value;
-    let foodType = document.querySelector("#Food-Type").value;
-    let rPassword = document.querySelector("#r-password").value;
+    let adminName = document.querySelector("#r-name");
+    let adminEmail = document.querySelector("#r-email");
+    let rCity = document.querySelector("#cities");
+    let foodType = document.querySelector("#Food-Type");
+    let adminPassword = document.querySelector("#r-password");
 
-    console.log(rName, rEmail, rCity, rPassword, foodType);
+    console.log(adminName, adminEmail, rCity, adminPassword, foodType);
+    let inputFields = [adminName, adminEmail, rCity, foodType, adminPassword]
 
-    // Retrieve existing users from localStorage
+
+    if (highlightIfEmpty(inputFields)) {
+
+        // Retrieve existing users from localStorage
+        let restaurantUsers = JSON.parse(localStorage.getItem("restaurantUsers")) || [];
+
+        const isEmailTaken = restaurantUsers.some(user => user.email === adminEmail.value);
+
+        if (isEmailTaken) {
+            alert("This email is already registered");
+            return; // Exit the function to prevent saving a duplicate
+        }
+
+        // Create a new user object
+        let newUser = {
+            name: adminName.value,
+            email: adminEmail.value,
+            city: rCity.value,
+            type: foodType.value,
+            password: adminPassword.value
+        };
+
+        // Save the new user to localStorage
+        restaurantUsers.push(newUser);
+        localStorage.setItem("restaurantUsers", JSON.stringify(restaurantUsers));
+
+        alert("Signup successful! User saved in localStorage.");
+        window.location.href = './adminLogin.html';
+    }
+}
+
+function loginAdmin() {
+    let adminEmail = document.getElementById("admin-email").value;
+    let adminPassword = document.getElementById("admin-password").value;
     let restaurantUsers = JSON.parse(localStorage.getItem("restaurantUsers")) || [];
 
-    // Create a new user object
-    let newUser = {
-        name: rName,
-        email: rEmail,
-        city: rCity,
-        type: foodType,
-        password: rPassword
-    };
+    // Find the user object that matches the login info
+    const loggedInUser = restaurantUsers.find(user => user.email == adminEmail && user.password == adminPassword);
+    
+    console.log(adminEmail, adminPassword, loggedInUser);
 
-    // Save the new user to localStorage
-    restaurantUsers.push(newUser);
-    localStorage.setItem("restaurantUsers", JSON.stringify(restaurantUsers));
+    if (loggedInUser) {
+        // alert("Login Success");
+        
+        // Store the admin name in local storage
+        // localStorage.setItem("adminName", loggedInUser.name);
+        // localStorage.setItem("Login", true);
+        localStorage.setItem("loggedInAdmin", loggedInUser.name);
 
-    alert("Signup successful! User saved in localStorage.");
-    window.location.href = './adminLogin.html';
+        window.location.href = "./adminDashboard.html";
+    } else {
+        let wrongEmail = document.getElementById("wrong-email")
+        wrongEmail.classList.remove("hide")
+    }
 }
+
+function logout() {
+    localStorage.setItem("Login", false);
+    localStorage.removeItem("loggedInAdmin")
+    window.location.href = "./adminLogin.html"
+}
+

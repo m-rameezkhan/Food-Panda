@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <title>Admin Dashboard</title>
+    
+</head>
+
+<body id="content">
+
+    <nav class="nav">
+        <div class="navbar-upper" id="navbar-upper">
+            <div class="welcome-heading">Welcome to Admin Dashboard</div>
+            <div class="cross" onclick="closeUpperNav(this)">
+                <i class="fas fa-times cross-icon"></i>
+            </div>
+        </div>
+
+        <div class="navbar-down">
+            <div class="logo">
+                <a href="./index.html"><img class="icon" src="Images/logo.png" alt=""></a>
+                <a href="./index.html"><img src="Images/icon.svg" alt=""></a>
+            </div>
+            <div>
+                <h1 class="main-heading" id="adminName">Hi Name</h1>
+            </div>
+            <div class="buttons">
+                <button class="signup-btn btn" onclick="goToAddItemPage()">Add Item</button>
+                <button class="signup-btn btn" onclick="logout()">Logout</button>
+
+                <div class="loader hide" id="loader"></div>
+            </div>
+
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="posts" id="posts">
+            </div>
+        </div>
+    </main>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Edit Item</h2>
+            <form id="editForm">
+                <label for="itemName">Item Name:</label>
+                <input type="text" id="itemName" placeholder="Enter item name">
+
+                <label for="itemPrice">Price:</label>
+                <input type="number" id="itemPrice" placeholder="Enter price">
+
+                <label for="itemDescription">Description:</label>
+                <textarea id="itemDescription" rows="3" placeholder="Enter description"></textarea>
+
+                <button type="button" class="btn signup-btn" onclick="saveChanges()">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeDeleteModal()">&times;</span>
+            <h2>Are you sure you want to delete this item?</h2>
+            <div class="del-btn">
+                <button type="button" class="btn signup-btn" onclick="confirmDelete()">Delete</button>
+                <button type="button" class="btn signup-btn" onclick="closeDeleteModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="main.js"></script>
+    <script src="login-signup.js"></script>
+    <script src="admin.js"></script>
+    <script src="adminDashboard.js"></script>
+</body>
+
+</html>

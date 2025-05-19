@@ -24,24 +24,24 @@ function navigateWithLoader(url) {
 }
 
 function signupBtn() {
-    if (window.location.pathname.includes("signup-page.html")) {
+    if (window.location.pathname.includes("signupPage.html")) {
         // Already on signup page: just toggle widgets
         showSignupWidgets();
         // Optionally update URL param without reload if you want
-        history.replaceState(null, '', './signup-page.html?signup=true');
+        history.replaceState(null, '', './signupPage.html?signup=true');
     } else {
         // Not on signup page: redirect with loader
-        navigateWithLoader("./signup-page.html?signup=true");
+        navigateWithLoader("./signupPage.html?signup=true");
     }
 }
 
 function loginBtn() {
-    if (window.location.pathname.includes("signup-page.html")) {
+    if (window.location.pathname.includes("signupPage.html")) {
         // Already on signup page: just toggle widgets
         showLoginWidgets();
-        history.replaceState(null, '', './signup-page.html?login=true');
+        history.replaceState(null, '', './signupPage.html?login=true');
     } else {
-        navigateWithLoader("./signup-page.html?login=true");
+        navigateWithLoader("./signupPage.html?login=true");
     }
 }
 
@@ -58,10 +58,32 @@ window.onload = function() {
     }
 };
 
-function closeUpperNav() {
+function closeUpperNav(e) {
     let upperNav = document.getElementById("navbar-upper")
-    let mainContent = document.getElementById('main-signup')
+    if(document.getElementById('main-signup')){
+        let mainContent = document.getElementById('main-signup')
+        mainContent.style.marginTop = '60px'
+        mainContent.style.height = "calc(100vh - 60px)"
+    }
     upperNav.style.height = '0px'
-    mainContent.style.marginTop = '60px'
-    mainContent.style.height = "calc(100vh - 60px)"
+    e.classList.add("hide")
+}
+
+function adminLoginBtn() {
+    window.location.href = "./adminLogin.html"
+
+}
+
+function highlightIfEmpty(inputFields) {
+    let flag = true;
+    inputFields.forEach(inputField => {
+        if (inputField.value === "" || inputField.value === "Select City" || inputField.value === "Select Cuisine Type") {
+            inputField.style.border = "2px solid red"
+            flag = false
+        }
+        else {
+            inputField.style.border = "2px solid green"
+        }
+    });
+    return flag
 }

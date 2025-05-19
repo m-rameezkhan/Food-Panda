@@ -1,0 +1,99 @@
+:root {
+    --background-color: #e21b70;
+    --dark-backdround-color: #be165f;
+}
+
+.main {
+    margin-top: 130px;
+    /* Space for fixed navbar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: calc(100vh - 130px);
+    transition: margin 0.3s ease;
+}
+
+.left-1 {
+    width: 50%;
+    height: 100%;
+    background-color: var(--background-color);
+    padding: 50px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+}
+
+.left-1>h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.left-1>p {
+    font-size: 18px;
+}
+
+.left-1>button {
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #cd1c69;
+    width: 80%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.left-1>button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-decoration: none;
+
+}
+
+.or {
+    margin-top: 20px;
+    font-family: "Inter";
+    font-size: 16px !important;
+    font-weight: 600;
+}
+
+.right-1 {
+    width: 50%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputs>p {
+    text-align: center;
+    margin: 10px 0px;
+}
+
+
+.signup-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.signup-btn2 {
+    height: 40px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.social-media-img img {
+    margin: 0px 10px;
+}
+
+.hide {
+    display: none !important;
+}

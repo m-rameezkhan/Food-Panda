@@ -13,33 +13,73 @@
         href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+        main {
+            margin-top: 64px;
+        }
+
+        .nav-heading {
+            font-size: 30px;
+            text-transform: uppercase;
+            font-family: "Inter";
+            color: #e21b70;
+            font-weight: 900;
+        }
+
+        .section-b {
+            margin-top: 50px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .quantity-controls button {
+            padding: 5px 10px;
+            font-size: 18px;
+            background-color: #e21b70;
+            width: 60px;
+            height: 40px;
+            border: none;
+            color: white;
+            margin: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .post {
+                width: calc(50% - 20px);
+                /* Adjust width for tablets */
+            }
+
+            .nav-heading {
+                font-size: 25px;
+                text-align: center;
+            }
+        }
+    </style>
     <title>Home</title>
 </head>
 
 <body id="content">
 
     <nav class="nav">
-        <div class="navbar-upper" id="navbar-upper">
-            <img class="icon nav-img" src="Images/ic-rider-icon.svg" alt="">
-            <div class="signup-business signup">
-                <p><a href="./adminLogin.html">LOGIN AS ADMIN</a></p>
-            </div>
-            <div class="signup-restaurant signup" onclick="">
-                <p><a href="./adminSignup.html">SIGNUP TO BE A RESTAURANT PARTNER</a>
-                <p>
-            </div>
-            <div class="cross" id="cross" onclick="closeUpperNav(this)">
-                <i class="fas fa-times cross-icon"></i>
-            </div>
-        </div>
         <div class="navbar-down">
             <div class="logo">
                 <a href="./index.html"><img class="icon" src="Images/logo.png" alt=""></a>
                 <a href="./index.html"><img src="Images/icon.svg" alt=""></a>
             </div>
+            <div>
+                <h1 class="nav-heading" id="userName">Hi Name</h1>
+            </div>
             <div class="buttons">
-                <button class="login-btn btn" onclick="loginBtn()">Login</button>
-                <button class="signup-btn btn" onclick="signupBtn()">Signup</button>
+                <button class="signup-btn btn" onclick="userLogout()">Logout</button>
 
                 <div class="loader hide" id="loader"></div>
             </div>
@@ -61,13 +101,13 @@
             </div>
         </div>
         <div class="section-b">
-            <div class="heading">
-                <h1></h1>
+            <div class="posts" id="posts">
             </div>
         </div>
     </main>
 
     <script src="main.js"></script>
+    <script src="userDashboard.js"></script>
 </body>
 
 </html>

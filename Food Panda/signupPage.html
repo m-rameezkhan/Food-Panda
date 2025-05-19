@@ -7,105 +7,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="signupPage.css">
     <title>Food Panda</title>
-    <style>
-        :root {
-            --background-color: #e21b70;
-            --dark-backdround-color: #be165f;
-        }
-
-        .main {
-            margin-top: 130px;
-            /* Space for fixed navbar */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            height: calc(100vh - 130px);
-            transition: margin 0.3s ease;
-        }
-
-        .left-1 {
-            width: 50%;
-            height: 100%;
-            background-color: var(--background-color);
-            padding: 50px;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center
-        }
-
-        .left-1>h1 {
-            font-size: 30px;
-            margin-bottom: 20px;
-        }
-
-        .left-1>p {
-            font-size: 18px;
-        }
-
-        .left-1>button {
-            padding: 10px;
-            margin-top: 20px;
-            background-color: #cd1c69;
-            width: 80%;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-        }
-
-        .left-1>button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            text-decoration: none;
-
-        }
-
-        .right-1 {
-            width: 50%;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .inputs>p {
-            text-align: center;
-            margin: 10px 0px;
-        }
-
-
-        .signup-heading {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .signup-btn2 {
-            height: 40px;
-            border-radius: 10px;
-            color: white;
-            font-weight: 600;
-            font-size: 18px;
-        }
-
-        .social-media-img img {
-            margin: 0px 10px;
-        }
-
-        .hide {
-            display: none !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -113,13 +22,13 @@
         <div class="navbar-upper" id="navbar-upper">
             <img class="icon nav-img" src="Images/ic-rider-icon.svg" alt="">
             <div class="signup-business signup">
-                <p><a href="">LOGIN AS ADMIN</a></p>
+                <p><a href="./adminLogin.html">LOGIN AS ADMIN</a></p>
             </div>
             <div class="signup-restaurant signup" onclick="adminSignupBtn()">
                 <p><a href="./adminSignup.html">SIGNUP TO BE A RESTAURANT PARTNER</a>
                 <p></p>
             </div>
-            <div class="cross" onclick="closeUpperNav()">
+            <div class="cross" onclick="closeUpperNav(this)">
                 <i class="fas fa-times cross-icon"></i>
             </div>
         </div>
@@ -144,6 +53,8 @@
                 Login.</button>
             <button onclick="signupBtn()" class="signup-btn2 signup-btn loginWdgt">Don't have an account?
                 Signup.</button>
+                <p class="or">OR</p>
+            <button onclick="adminLoginBtn()" class="signup-btn2 signup-btn">Login as Admin</button>
         </div>
         <div class="right-1">
             <h1 class="signup-heading signupWdgt hide">Signup</h1>
@@ -154,8 +65,9 @@
                 <input type="password" name="" placeholder="Enter password" id="password">
                 <input type="password" class="hide signupWdgt" name="" placeholder="Confrim password"
                     id="confrim-password">
-                <button class="signup-btn2 signup-btn hide signupWdgt">Signup</button>
-                <button class="signup-btn2 loginWdgt signup-btn">Login</button>
+                <button class="signup-btn2 signup-btn hide signupWdgt" onclick="userSignup()">Signup</button>
+                <span class="forget-password loginWdgt"><a href="./forget-password.html">Forget password?</a></span>
+                <button class="signup-btn2 loginWdgt signup-btn" onclick="userLogin()">Login</button>
                 <p class="hide signupWdgt">or signup with</p>
                 <p class="loginWdgt">or login with</p>
             </div>
@@ -167,6 +79,7 @@
         </div>
     </main>
     <script src="main.js"></script>
+    <script src="userSignup.js"></script>
 </body>
 
 </html>

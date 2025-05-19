@@ -9,65 +9,70 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="login-signup.css">
-    <title>Login as Admin</title>
-    <style>
-        .form {
-            margin-top: 30px;
-        }
-
-        .wrong-email {
-            color: red;
-            font-size: 12px;
-            margin-top: 5px;
-        }
-    </style>
-
+    <link rel="stylesheet" href="admin.css">
+    <title>Add Items</title>
 </head>
 
-<body>
+<body id="content">
 
     <nav class="nav">
+        <div class="navbar-upper" id="navbar-upper">
+            <div class="welcome-heading">Welcome to Admin Dashboard</div>
+            <div class="cross" onclick="closeUpperNav(this)">
+                <i class="fas fa-times cross-icon"></i>
+            </div>
+        </div>
+
         <div class="navbar-down">
             <div class="logo">
                 <a href="./index.html"><img class="icon" src="Images/logo.png" alt=""></a>
                 <a href="./index.html"><img src="Images/icon.svg" alt=""></a>
             </div>
+            <div>
+                <h1 class="main-heading" id="adminName">Hi Name</h1>
+            </div>
             <div class="buttons">
-                <button class="login-btn btn" onclick="loginBtn()">Login as Customer</button>
-                <button class="signup-btn btn" onclick="signupBtn()">Signup as Customer</button>
+                <button class="signup-btn btn" onclick="logout()">Logout</button>
 
                 <div class="loader hide" id="loader"></div>
             </div>
+
         </div>
     </nav>
     <main id="main">
-        <div class="form">
-            <div class="inputs">
-                <h1 class="heading">Login as Admin</h1>
-                <input type="email" name="" placeholder="Enter your Email" id="admin-email">
-                <input type="password" name="" placeholder="Enter Password" id="admin-password">
-                <span class="wrong-email hide" id="wrong-email">The email or password that you've entered is
-                    incorrect.</span>
-                <span class="forget-password"><a href="./forget-password.html">Forget password?</a></span>
-                <button class="signup-btn btn signup-btn-admin" onclick="loginAdmin()">Login</button>
-                <div class="already-signup">
-                    <p>OR</p>
-                    <p>Don't have an account? <span class="login-span"><a href="./adminSignup.html">Create</a></span>
-                    </p>
+        <div class="section-a">
+            <div class="left">
+                
+                <h3 class="sub-heading">Add Items</h3>
+                <div class="input">
+                    <input type="text" name="" placeholder="Product Name" id="product-name">
+                    <input type="number" name="" placeholder="Price" id="product-price">
+                    <input type="text" name="" placeholder="Description" id="product-description">
+                    <input type="file" class="custom-file-input" id="fileInput">
                 </div>
+                <button class="find-food" onclick="addItem()">Add Item</button>
+                <button class="find-food" onclick="goToAdminDashboard()">View all Item</button>
+            </div>
+            <div class="right">
+                <img src="Images/main-page-image.webp" alt="">
+            </div>
+        </div>
+        <div class="section-b">
+            <div class="heading">
+                <h1></h1>
             </div>
         </div>
     </main>
 
     <script src="main.js"></script>
     <script src="login-signup.js"></script>
+    <script src="admin.js"></script>
+    <script src="adminAddItems.js"></script>
+
 </body>
 
 </html>
