@@ -53,7 +53,7 @@ function userLogin() {
 
     // Save current user in localStorage
     localStorage.setItem('currentUser', JSON.stringify(foundUser));
-    alert("Login successful!");
+    // alert("Login successful!");
     // Redirect to homepage or user dashboard
     window.location.href = "./userDashboard.html"; // or your desired page
 }

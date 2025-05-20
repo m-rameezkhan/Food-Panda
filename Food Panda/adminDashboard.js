@@ -1,10 +1,21 @@
 let posts = document.getElementById("posts");
 adminName = localStorage.getItem("loggedInAdmin");
-let items = JSON.parse(localStorage.getItem(adminName)) || [];
+// let items = JSON.parse(localStorage.getItem(adminName)) || [];
+const restaurantUsers = JSON.parse(localStorage.getItem("restaurantUsers")) || [];
+const currentAdmin = restaurantUsers.find(admin => admin.name === adminName);
+let items = currentAdmin?.items || [];
 
-// Render items on the page
+
+// Render only current admin's items (similar to user dashboard but scoped to logged-in admin)
 function renderItems() {
+    const posts = document.getElementById("posts");
     posts.innerHTML = "";
+
+    if (items.length === 0) {
+        posts.innerHTML = "<p>No items found for this admin.</p>";
+        return;
+    }
+
     items.forEach((item, index) => {
         posts.innerHTML += `
             <div class="post" id="post-${index}">
@@ -21,6 +32,7 @@ function renderItems() {
             </div>`;
     });
 }
+renderItems()
 
 // Open Edit Modal with specific item data
 function editItem(index) {
@@ -37,7 +49,6 @@ function closeModal() {
     document.getElementById("editModal").style.display = "none";
 }
 
-// Save Changes to the Specific Item
 function saveChanges() {
     const newItemName = document.getElementById("itemName").value;
     const newItemPrice = document.getElementById("itemPrice").value;
@@ -50,7 +61,15 @@ function saveChanges() {
             price: newItemPrice,
             description: newItemDescription,
         };
-        localStorage.setItem(adminName, JSON.stringify(items));
+
+        // Save back to restaurantUsers
+        const restaurantUsers = JSON.parse(localStorage.getItem("restaurantUsers")) || [];
+        const adminIndex = restaurantUsers.findIndex(admin => admin.name === localStorage.getItem("loggedInAdmin"));
+        if (adminIndex !== -1) {
+            restaurantUsers[adminIndex].items = items;
+            localStorage.setItem("restaurantUsers", JSON.stringify(restaurantUsers));
+        }
+
         renderItems();
         alert("Item updated successfully!");
         closeModal();
@@ -70,14 +89,21 @@ function closeDeleteModal() {
     document.getElementById("deleteModal").style.display = "none";
 }
 
-// Confirm Delete
 function confirmDelete() {
     items.splice(window.currentDeleteIndex, 1);
-    localStorage.setItem(adminName, JSON.stringify(items));
+
+    // Save back to restaurantUsers
+    const restaurantUsers = JSON.parse(localStorage.getItem("restaurantUsers")) || [];
+    const adminIndex = restaurantUsers.findIndex(admin => admin.name === localStorage.getItem("loggedInAdmin"));
+    if (adminIndex !== -1) {
+        restaurantUsers[adminIndex].items = items;
+        localStorage.setItem("restaurantUsers", JSON.stringify(restaurantUsers));
+    }
+
     renderItems();
     closeDeleteModal();
-    // alert("Item deleted successfully!");
 }
+
 
 // Close any modal on clicking outside
 window.onclick = function (event) {
