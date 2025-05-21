@@ -1,9 +1,3 @@
-// Display current user's name
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-if (currentUser) {
-    document.getElementById("userName").textContent = `Hi ${currentUser.name}`;
-}
-
 const posts = document.getElementById("posts");
 const restaurantUsers = JSON.parse(localStorage.getItem("restaurantUsers")) || [];
 
@@ -42,19 +36,6 @@ function renderAllItems() {
 // Initial render
 window.onload = renderAllItems;
 
-// Quantity Control Functions
-function increaseQty(id) {
-    const qtyEl = document.getElementById(`qty-${id}`);
-    let current = parseInt(qtyEl.textContent);
-    qtyEl.textContent = current + 1;
-}
-
-function decreaseQty(id) {
-    const qtyEl = document.getElementById(`qty-${id}`);
-    let current = parseInt(qtyEl.textContent);
-    if (current > 1) qtyEl.textContent = current - 1;
-}
-
 // Cart handling
 function addToCart(adminName, itemIndex, uniqueId) {
     const qty = parseInt(document.getElementById(`qty-${uniqueId}`).textContent);
@@ -78,9 +59,10 @@ function addToCart(adminName, itemIndex, uniqueId) {
     }
 }
 
-
-
-
 function userLogout() {
     window.location.href = "./signupPage.html"
+}
+
+function goToCart() {
+    window.location.href = "./userCart.html"
 }

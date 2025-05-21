@@ -192,6 +192,7 @@ main {
     overflow: hidden;
     align-items: center;
     background-color: rgba(224, 222, 222, 0.605);
+    max-height: min(calc(100vh - 65px), 800px);
 }
 
 .left {

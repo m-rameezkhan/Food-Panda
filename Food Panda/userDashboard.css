@@ -1,0 +1,48 @@
+main {
+    margin-top: 64px;
+}
+
+.nav-heading {
+    font-size: 30px;
+    text-transform: uppercase;
+    font-family: "Inter";
+    color: #e21b70;
+    font-weight: 900;
+}
+
+.section-b {
+    margin-top: 50px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.quantity-controls button {
+    padding: 5px 10px;
+    font-size: 18px;
+    background-color: #e21b70;
+    width: 60px;
+    height: 40px;
+    border: none;
+    color: white;
+    margin: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .post {
+        width: calc(50% - 20px);
+        /* Adjust width for tablets */
+    }
+
+    .nav-heading {
+        font-size: 25px;
+        text-align: center;
+    }
+}

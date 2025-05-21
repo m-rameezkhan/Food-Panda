@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="dashboard.css"> -->
+    <link rel="stylesheet" href="userDashboard.css">
+    <title>My Cart</title>
+
+    <style>
+        .main-heading {
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+        }
+
+        .cart {
+            width: 80%;
+            /* margin: 100px; */
+        }
+
+        .cart-main {
+            width: 100%;
+        }
+
+        .cart-head {
+            width: 100%;
+            justify-content: center;
+            display: flex;
+            font-family: "Inter";
+            font-size: 18px;
+            font-weight: 600;
+            margin: 10px 0px;
+        }
+
+        .cart-item-head {
+            width: min(40%, 420px);
+            text-align: center;
+        }
+
+        .cart-total-head,
+        .cart-quantity-head,
+        .cart-price-head {
+            width: min(20%, 210px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100px;
+            border-top: 1px solid gray;
+            border-bottom: 1px solid gray;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .cart-image {
+            width: 100px;
+        }
+
+        .cart-image>img {
+            width: 100%;
+        }
+
+        .center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-item-name {
+            width: min(calc(40% - 100px), 320px);
+            display: block;
+            padding-left: 20px;
+        }
+
+        .cart-item-price,
+        .cart-item-total,
+        .quantity-controls {
+            width: min(20%, 210px);
+        }
+
+        .quantity-controls {
+            margin: 0px;
+        }
+
+        .quantity-controls button {
+            margin: 0px;
+            width: 40px;
+        }
+
+        .cart-end {
+            display: flex;
+            justify-content: flex-end;
+            margin: 20px 20px 0px 0px;
+        }
+
+        .cart-total {
+            width: 50%;
+            min-width: 220px;
+            max-width: 300px;
+        }
+
+        .bill {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0px;
+            font-family: "roboto";
+            font-size: 18px;
+            font-weight: 600;
+
+        }
+
+        .check-out {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .check-out-btn{
+            color: white;
+            background-color: black;
+            width: 170px;
+            height: 30px;
+            margin-top: 10px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .check-out-btn:hover{
+            border: 2px solid black;
+            color: black;
+            background-color: white;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body id="content">
+
+    <nav class="nav">
+        <div class="navbar-down">
+            <div class="logo">
+                <a href="./index.html"><img class="icon" src="Images/logo.png" alt=""></a>
+                <a href="./index.html"><img src="Images/icon.svg" alt=""></a>
+            </div>
+            <div>
+                <h1 class="nav-heading" id="userName">Hi Name</h1>
+            </div>
+            <div class="buttons">
+                <button class="signup-btn btn" onclick="goBackToUserDashboard()">Go Back</button>
+                <button class="signup-btn btn" onclick="userLogout()">Logout</button>
+
+                <div class="loader hide" id="loader"></div>
+            </div>
+
+        </div>
+    </nav>
+
+    <main id="main">
+        <div class="cart">
+            <div class="cart-top">
+                <h1 class="main-heading">Your Cart</h1>
+            </div>
+            <div class="cart-main">
+                <div class="cart-head">
+                    <div class="cart-item-head">Item</div>
+                    <div class="cart-price-head">Price</div>
+                    <div class="cart-quantity-head">Quantity</div>
+                    <div class="cart-total-head">Total</div>
+                </div>
+                <div class="cart-end">
+                    <div class="cart-total">
+                        <div class="bill subtotal">
+                            <span>Subtotal:</span>
+                            <span>Rs. 678</span>
+                        </div>
+                        <div class="bill sale-tax">
+                            <span>Sales Tax:</span>
+                            <span>Rs. 0.00</span>
+                        </div>
+                        <div class="bill coupon-code">
+                            <span>Coupon Code:</span>
+                            <span class="add-coupon">Add Coupon</span>
+                        </div>
+                        <div class="bill grand-total">
+                            <span>Grand Total:</span>
+                            <span>Rs. 678</span>
+                        </div>
+                        <div class="check-out">
+                            <button class="check-out-btn">Check Out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+    <!-- <script src="userDashboard.js"></script> -->
+    <script src="user.js"></script>
+    <script src="userCart.js"></script>
+</body>
+
+</html>
