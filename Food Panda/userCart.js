@@ -45,21 +45,70 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".grand-total span:last-child").textContent = `Rs. ${grandTotal.toFixed(2)}`;
 });
 
+
+function updateTotals() {
+    const cart = JSON.parse(localStorage.getItem("userCart")) || [];
+
+    let total = 0;
+    cart.forEach(item => {
+        total += item.quantity * parseFloat(item.price);
+    });
+
+    const salesTax = 0;
+    const grandTotal = total + salesTax;
+
+    document.querySelector(".subtotal span:last-child").textContent = `Rs. ${total.toFixed(2)}`;
+    document.querySelector(".sale-tax span:last-child").textContent = `Rs. ${salesTax.toFixed(2)}`;
+    document.querySelector(".grand-total span:last-child").textContent = `Rs. ${grandTotal.toFixed(2)}`;
+}
+
+
 function increaseQty(index) {
     const cart = JSON.parse(localStorage.getItem("userCart")) || [];
     cart[index].quantity += 1;
     localStorage.setItem("userCart", JSON.stringify(cart));
-    location.reload();
+
+    const quantity = document.getElementById("qty-" + index);
+    if (quantity) {
+        quantity.innerHTML = cart[index].quantity;
+
+        // Also update item total price
+        const itemTotal = document.querySelectorAll(".cart-item-total p")[index];
+        itemTotal.innerHTML = (cart[index].quantity * parseFloat(cart[index].price)).toFixed(2);
+    }
+    updateTotals();
 }
 
 function decreaseQty(index) {
     const cart = JSON.parse(localStorage.getItem("userCart")) || [];
+
     if (cart[index].quantity > 1) {
         cart[index].quantity -= 1;
+        localStorage.setItem("userCart", JSON.stringify(cart));
+
+        const quantity = document.getElementById("qty-" + index);
+        if (quantity) {
+            quantity.innerHTML = cart[index].quantity;
+
+            const itemTotal = document.querySelectorAll(".cart-item-total p")[index];
+            itemTotal.innerHTML = (cart[index].quantity * parseFloat(cart[index].price)).toFixed(2);
+        }
     } else {
+        // Remove item from cart and DOM
         cart.splice(index, 1);
+        localStorage.setItem("userCart", JSON.stringify(cart));
+
+        const cartItems = document.querySelectorAll(".cart-content");
+        if (cartItems[index]) {
+            cartItems[index].remove();
+        }
+
+        // Optional: re-render remaining items to reset indexes (not strictly necessary unless order matters)
     }
-    localStorage.setItem("userCart", JSON.stringify(cart));
-    location.reload();
+    updateTotals();
 }
 
+
+function userLogout() {
+    window.location.href = "./signupPage.html"
+}

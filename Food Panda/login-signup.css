@@ -20,11 +20,12 @@ main {
     margin: 10px 0px;
     color: black;
     text-align: center;
+    width: 90%;
 }
 
 .inputs {
     /* border: 2px solid black; */
-    width: 40%;
+    width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -65,6 +66,7 @@ main {
     margin: 5px 0px;
     border-radius: 0px;
     font-size: 16px;
+    font-weight: 600;
 }
 
 .signup-btn-admin:hover {
@@ -87,4 +89,37 @@ main {
     color: rgb(0, 0, 174);
     cursor: pointer;
     /* text-decoration-skip-ink: none; */
+}
+
+@media(max-width: 700px){
+    .inputs{
+        width: 80%;
+    }
+}
+@media(max-width: 600px){
+    .btn{
+        width: 100px;
+        height: 45px;
+    }
+}
+@media(max-width: 500px){
+    .inputs{
+        width: 90%;
+    }
+}
+@media(max-width: 450px){
+    .btn{
+        width: 90px;
+        font-size: 13px;
+    }
+    .heading{
+        font-size: 25px;
+    }
+}
+@media(max-width: 400px){
+    .btn{
+        width: 80px;
+        font-size: 12px;
+        margin: 0px 0px 0px 5px;
+    }
 }
