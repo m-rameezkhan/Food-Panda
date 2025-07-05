@@ -14,7 +14,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="dashboard.css">
-   <link rel="stylesheet" href="userDashboard.css">
+    <link rel="stylesheet" href="userDashboard.css">
     <title>Home</title>
 </head>
 
@@ -24,12 +24,12 @@
         <div class="navbar-down">
             <div class="logo">
                 <a href="./index.html"><img class="icon" src="Images/logo.png" alt=""></a>
-                <a href="./index.html"><img src="Images/icon.svg" alt=""></a>
+                <a href="./index.html" class="remove"><img src="Images/icon.svg" alt=""></a>
             </div>
             <div>
                 <h1 class="nav-heading" id="userName">Hi Name</h1>
             </div>
-            <div class="buttons">
+            <div class="buttons dashboard-btn">
                 <button class="signup-btn btn" onclick="goToCart()">View Cart</button>
                 <button class="signup-btn btn" onclick="userLogout()">Logout</button>
 
@@ -57,6 +57,17 @@
             </div>
         </div>
     </main>
+
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-modal-content">
+            <div class="cart-modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <p>Item added to your cart!</p>
+            <button onclick="closeCartModal()">OK</button>
+        </div>
+    </div>
+
 
     <script src="main.js"></script>
     <script src="userDashboard.js"></script>

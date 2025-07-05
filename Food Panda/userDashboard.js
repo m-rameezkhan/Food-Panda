@@ -55,7 +55,8 @@ function addToCart(adminName, itemIndex, uniqueId) {
         };
         cart.push(cartItem);
         localStorage.setItem("userCart", JSON.stringify(cart));
-        alert(`${item.name} added to cart (x${qty})`);
+        // alert(`${item.name} added to cart (x${qty})`);
+        showCartModal()
     }
 }
 
@@ -65,4 +66,18 @@ function userLogout() {
 
 function goToCart() {
     window.location.href = "./userCart.html"
+}
+
+function showCartModal() {
+    const modal = document.getElementById("cartModal");
+    modal.style.display = "flex";
+
+    // Auto close after 2 seconds
+    // setTimeout(() => {
+    //     modal.style.display = "none";
+    // }, 2000);
+}
+
+function closeCartModal() {
+    document.getElementById("cartModal").style.display = "none";
 }

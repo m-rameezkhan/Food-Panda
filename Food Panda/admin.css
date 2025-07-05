@@ -6,6 +6,7 @@
 .buttons {
     /* width: 162px; */
     justify-content: flex-end;
+
 }
 
 main {
@@ -111,5 +112,10 @@ main {
 @media (max-width: 480px) {
     .post {
         width: 100%; /* Full width for small screens */
+    }
+}
+@media (max-width: 380px) {
+    .welcome-heading{
+        font-size: 18px;
     }
 }

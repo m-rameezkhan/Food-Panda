@@ -81,7 +81,7 @@ function saveChanges() {
 // Open Delete Confirmation Modal
 function openDeleteModal(index) {
     window.currentDeleteIndex = index;
-    document.getElementById("deleteModal").style.display = "block";
+    document.getElementById("deleteModal").style.display = "flex";
 }
 
 // Close Delete Confirmation Modal

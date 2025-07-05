@@ -13,7 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- <link rel="stylesheet" href="dashboard.css"> -->
+    <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="userDashboard.css">
     <title>My Cart</title>
 
@@ -24,16 +24,19 @@
 
         main {
             display: flex;
+            margin-top: 90px;
             justify-content: center;
         }
 
         .cart {
             width: 80%;
-            /* margin: 100px; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .cart-main {
-            width: 100%;
+            width: min(100%, 1050px);
         }
 
         .cart-head {
@@ -133,7 +136,8 @@
             display: flex;
             justify-content: flex-end;
         }
-        .check-out-btn{
+
+        .check-out-btn {
             color: white;
             background-color: black;
             width: 170px;
@@ -144,11 +148,61 @@
             font-size: 16px;
             font-weight: 500;
         }
-        .check-out-btn:hover{
+
+        .check-out-btn:hover {
             border: 2px solid black;
             color: black;
             background-color: white;
             font-weight: 700;
+        }
+
+        @media (max-width: 800px) {
+            .cart {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .cart-head {
+                display: none;
+            }
+
+            .cart-content {
+                flex-direction: column;
+                height: auto;
+                padding: 10px 0;
+                text-align: center;
+                font-size: 16px;
+            }
+
+            .cart-image {
+                margin: 0 auto;
+            }
+
+            .cart-item-name,
+            .cart-item-price,
+            .quantity-controls,
+            .cart-item-total {
+                width: 100%;
+                margin: 5px 0;
+                text-align: center;
+            }
+
+            .cart-end {
+                justify-content: center;
+                margin: 20px 0;
+            }
+
+            .cart-total {
+                width: 90%;
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 500px) {
+            main {
+                margin-top: 130px;
+            }
         }
     </style>
 </head>
@@ -159,12 +213,12 @@
         <div class="navbar-down">
             <div class="logo">
                 <a href="./index.html"><img class="icon" src="Images/logo.png" alt=""></a>
-                <a href="./index.html"><img src="Images/icon.svg" alt=""></a>
+                <a href="./index.html" class="remove"><img src="Images/icon.svg" alt=""></a>
             </div>
             <div>
                 <h1 class="nav-heading" id="userName">Hi Name</h1>
             </div>
-            <div class="buttons">
+            <div class="buttons dashboard-btn">
                 <button class="signup-btn btn" onclick="goBackToUserDashboard()">Go Back</button>
                 <button class="signup-btn btn" onclick="userLogout()">Logout</button>
 
@@ -212,6 +266,7 @@
             </div>
         </div>
     </main>
+
 
     <script src="main.js"></script>
     <!-- <script src="userDashboard.js"></script> -->
