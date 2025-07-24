@@ -1,7 +1,16 @@
 document.addEventListener("DOMContentLoaded", renderCart);
 
+document.addEventListener("DOMContentLoaded", renderCart);
+
 function renderCart() {
-    const cartItems = JSON.parse(localStorage.getItem("userCart")) || [];
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (!currentUser) return;
+
+    const currentUserEmail = currentUser.email;
+
+    const allCarts = JSON.parse(localStorage.getItem("userCarts")) || {};
+    const cartItems = allCarts[currentUserEmail] || [];
+
     const cartMain = document.querySelector(".cart-main");
     const cartEnd = document.querySelector(".cart-end");
 
@@ -40,7 +49,6 @@ function renderCart() {
         cartMain.insertBefore(cartHTML, cartEnd);
     });
 
-    // Update totals
     const salesTax = 0;
     const grandTotal = total + salesTax;
 
@@ -49,16 +57,33 @@ function renderCart() {
     document.querySelector(".grand-total span:last-child").textContent = `Rs. ${grandTotal.toFixed(2)}`;
 }
 
+
 function increaseQty(index) {
-    const cart = JSON.parse(localStorage.getItem("userCart")) || [];
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (!currentUser) return;
+
+    const currentUserEmail = currentUser.email;
+
+    const allCarts = JSON.parse(localStorage.getItem("userCarts")) || {};
+    const cart = allCarts[currentUserEmail] || [];
+
     cart[index].quantity += 1;
-    localStorage.setItem("userCart", JSON.stringify(cart));
+
+    allCarts[currentUserEmail] = cart;
+    localStorage.setItem("userCarts", JSON.stringify(allCarts));
 
     renderCart();
 }
 
+
 function decreaseQty(index) {
-    const cart = JSON.parse(localStorage.getItem("userCart")) || [];
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (!currentUser) return;
+
+    const currentUserEmail = currentUser.email;
+
+    const allCarts = JSON.parse(localStorage.getItem("userCarts")) || {};
+    const cart = allCarts[currentUserEmail] || [];
 
     if (cart[index].quantity > 1) {
         cart[index].quantity -= 1;
@@ -66,10 +91,12 @@ function decreaseQty(index) {
         cart.splice(index, 1);
     }
 
-    localStorage.setItem("userCart", JSON.stringify(cart));
+    allCarts[currentUserEmail] = cart;
+    localStorage.setItem("userCarts", JSON.stringify(allCarts));
 
     renderCart();
 }
+
 
 function userLogout() {
     window.location.href = "./signupPage.html";

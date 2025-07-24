@@ -12,9 +12,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Ancizar+Serif:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="adminAddItems.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/admin.css">
+    <link rel="stylesheet" href="CSS/adminAddItems.css">
+    <link rel="stylesheet" href="CSS/dashboard.css">
     <title>Add Items</title>
 </head>
 
@@ -47,7 +48,7 @@
     <main id="main">
         <div class="section-a">
             <div class="left">
-                
+
                 <h3 class="sub-heading">Add Items</h3>
                 <div class="input">
                     <input type="text" name="" placeholder="Product Name" id="product-name">
@@ -69,11 +70,20 @@
         </div>
     </main>
 
-    <script src="main.js"></script>
-    <script src="login-signup.js"></script>
-    <script src="admin.js"></script>
-    <script src="adminAddItems.js"></script>
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-modal-content">
+            <div class="cart-modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <p>Item added!</p>
+            <button onclick="closeCartModal()">OK</button>
+        </div>
+    </div>
 
+    <script src="Javascript/main.js"></script>
+    <script src="Javascript/login-signup.js"></script>
+    <script src="Javascript/admin.js"></script>
+    <script src="Javascript/adminAddItems.js"></script>
 </body>
 
 </html>

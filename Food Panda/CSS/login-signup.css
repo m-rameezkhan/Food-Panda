@@ -55,7 +55,7 @@ main {
     outline: 2px solid rgb(255, 134, 154);
 }
 
-.btn{
+.btn {
     width: 145px;
     height: 35px;
 }
@@ -91,33 +91,45 @@ main {
     /* text-decoration-skip-ink: none; */
 }
 
-@media(max-width: 700px){
-    .inputs{
+.wrong-email {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    width: 90%;
+}
+
+@media(max-width: 700px) {
+    .inputs {
         width: 80%;
     }
 }
-@media(max-width: 600px){
-    .btn{
+
+@media(max-width: 600px) {
+    .btn {
         width: 100px;
         height: 45px;
     }
 }
-@media(max-width: 500px){
-    .inputs{
+
+@media(max-width: 500px) {
+    .inputs {
         width: 90%;
     }
 }
-@media(max-width: 450px){
-    .btn{
+
+@media(max-width: 450px) {
+    .btn {
         width: 90px;
         font-size: 13px;
     }
-    .heading{
+
+    .heading {
         font-size: 25px;
     }
 }
-@media(max-width: 400px){
-    .btn{
+
+@media(max-width: 400px) {
+    .btn {
         width: 80px;
         font-size: 12px;
         margin: 0px 0px 0px 5px;

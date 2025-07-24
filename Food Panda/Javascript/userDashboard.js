@@ -6,6 +6,8 @@ function renderAllItems() {
     posts.innerHTML = "";
 
     restaurantUsers.forEach((admin) => {
+        const currrentUser = JSON.parse(localStorage.getItem("currentUser"));
+        const currentUserEmail = currrentUser.email
         if (Array.isArray(admin.items)) {
             admin.items.forEach((item, itemIndex) => {
                 const uniqueId = `${admin.name}-${itemIndex}`; // Unique ID for item
@@ -24,7 +26,7 @@ function renderAllItems() {
                             <button onclick="increaseQty('${uniqueId}')">+</button>
                         </div>
 
-                        <button class="btn signup-btn" onclick="addToCart('${admin.name}', ${itemIndex}, '${uniqueId}')">
+                        <button class="btn addToCartBtn signup-btn" onclick="addToCart('${admin.name}', ${itemIndex}, '${uniqueId}', '${currentUserEmail}')">
                             Add to Cart
                         </button>
                     </div>`;
@@ -37,10 +39,10 @@ function renderAllItems() {
 window.onload = renderAllItems;
 
 // Cart handling
-function addToCart(adminName, itemIndex, uniqueId) {
+function addToCart(adminName, itemIndex, uniqueId, currentUserEmail) {
     const qty = parseInt(document.getElementById(`qty-${uniqueId}`).textContent);
     const allAdmins = JSON.parse(localStorage.getItem("restaurantUsers")) || [];
-    const cart = JSON.parse(localStorage.getItem("userCart")) || [];
+    const allCarts = JSON.parse(localStorage.getItem("userCarts")) || {};
 
     const admin = allAdmins.find(admin => admin.name === adminName);
     if (admin && admin.items && admin.items[itemIndex]) {
@@ -53,12 +55,28 @@ function addToCart(adminName, itemIndex, uniqueId) {
             quantity: qty,
             admin: adminName
         };
-        cart.push(cartItem);
-        localStorage.setItem("userCart", JSON.stringify(cart));
-        // alert(`${item.name} added to cart (x${qty})`);
-        showCartModal()
+
+        const userCart = allCarts[currentUserEmail] || [];
+
+        // 🔷 Check if item already exists
+        const existingItem = userCart.find(cart =>
+            cart.name === cartItem.name && cart.admin === cartItem.admin
+        );
+
+        if (existingItem) {
+            existingItem.quantity += qty;
+        } else {
+            userCart.push(cartItem);
+        }
+
+        allCarts[currentUserEmail] = userCart;
+
+        localStorage.setItem("userCarts", JSON.stringify(allCarts));
+        showCartModal();
     }
 }
+
+
 
 function userLogout() {
     window.location.href = "./signupPage.html"
@@ -67,7 +85,6 @@ function userLogout() {
 function goToCart() {
     window.location.href = "./userCart.html"
 }
-
 function showCartModal() {
     const modal = document.getElementById("cartModal");
     modal.style.display = "flex";

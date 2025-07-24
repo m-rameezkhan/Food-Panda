@@ -37,7 +37,8 @@ function addItem() {
             }
             restaurantUsers[adminIndex].items.push(newItem);
             localStorage.setItem("restaurantUsers", JSON.stringify(restaurantUsers));
-            alert("Item added successfully!");
+            // alert("Item added successfully!");
+            showCartModal();
         } else {
             alert("Admin not found!");
         }
@@ -46,6 +47,20 @@ function addItem() {
     // Convert file to Base64
     reader.readAsDataURL(productImage);
 
+}
+
+function showCartModal() {
+    const modal = document.getElementById("cartModal");
+    modal.style.display = "flex";
+
+    // Auto close after 2 seconds
+    // setTimeout(() => {
+    //     modal.style.display = "none";
+    // }, 2000);
+}
+
+function closeCartModal() {
+    document.getElementById("cartModal").style.display = "none";
 }
 
 // const restaurantUsers = JSON.parse(localStorage.getItem("restaurantUsers")) || [];
