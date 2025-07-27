@@ -6,12 +6,10 @@ function forgetPassword() {
     const restaurantUsers = JSON.parse(localStorage.getItem("restaurantUsers")) || [];
     const regularUsers = JSON.parse(localStorage.getItem("users")) || [];
 
-    // find user by email in admins
     let user = restaurantUsers.find(u => u.email === enteredEmail);
     let userList = "restaurantUsers";
 
     if (!user) {
-        // check in regular users
         user = regularUsers.find(u => u.email === enteredEmail);
         userList = "users";
     }
@@ -23,34 +21,56 @@ function forgetPassword() {
 
     wrongEmailMsg.classList.add("hide");
 
-    // generate OTP
+    // ✅ Generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000);
-    alert(`Your OTP is: ${otp}`); // simulate sending email
-    console.log(`OTP for ${enteredEmail}: ${otp}`);
 
-    const enteredOtp = prompt("Enter the OTP sent to your email:");
+    // ✅ Send OTP to backend
+    fetch("https://food-panda-server-cbwr.onrender.com/send-otp", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: enteredEmail,
+            otp: otp
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (!data.success) {
+            alert("Failed to send OTP: " + data.message);
+            return;
+        }
 
-    if (enteredOtp != otp) {
-        alert("Incorrect OTP. Please try again.");
-        return;
-    }
+        // ✅ Ask user to enter the OTP
+        const enteredOtp = prompt("Enter the OTP sent to your email:");
 
-    const newPassword = prompt("Enter your new password:");
+        if (enteredOtp != otp) {
+            alert("Incorrect OTP. Please try again.");
+            return;
+        }
 
-    if (!newPassword || newPassword.length < 4) {
-        alert("Password must be at least 4 characters.");
-        return;
-    }
+        const newPassword = prompt("Enter your new password:");
 
-    // update password in the correct list
-    user.password = newPassword;
+        if (!newPassword || newPassword.length < 4) {
+            alert("Password must be at least 4 characters.");
+            return;
+        }
 
-    if (userList === "restaurantUsers") {
-        localStorage.setItem("restaurantUsers", JSON.stringify(restaurantUsers));
-    } else {
-        localStorage.setItem("users", JSON.stringify(regularUsers));
-    }
+        // ✅ Update local user password
+        user.password = newPassword;
 
-    alert("Password has been reset successfully! Please login with your new password.");
-    window.location.href = "./signupPage.html"; // or login page
+        if (userList === "restaurantUsers") {
+            localStorage.setItem("restaurantUsers", JSON.stringify(restaurantUsers));
+        } else {
+            localStorage.setItem("users", JSON.stringify(regularUsers));
+        }
+
+        alert("Password has been reset successfully! Please login with your new password.");
+        window.location.href = "./signupPage.html"; // or login page
+    })
+    .catch(err => {
+        console.error("Error:", err);
+        alert("An error occurred while sending the OTP.");
+    });
 }
