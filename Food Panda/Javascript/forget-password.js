@@ -21,19 +21,11 @@ function forgetPassword() {
 
     wrongEmailMsg.classList.add("hide");
 
-    // ✅ Generate OTP
-    const otp = Math.floor(100000 + Math.random() * 900000);
-
-    // ✅ Send OTP to backend
+    // ✅ Step 1: Ask backend to send OTP
     fetch("https://food-panda-server-cbwr.onrender.com/send-otp", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            email: enteredEmail,
-            otp: otp
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: enteredEmail })
     })
     .then(res => res.json())
     .then(data => {
@@ -41,15 +33,33 @@ function forgetPassword() {
             alert("Failed to send OTP: " + data.message);
             return;
         }
+        console.log("OTP sent successfully!");
 
-        // ✅ Ask user to enter the OTP
+        // ✅ Step 2: Ask user to enter OTP
         const enteredOtp = prompt("Enter the OTP sent to your email:");
 
-        if (enteredOtp != otp) {
-            alert("Incorrect OTP. Please try again.");
+        if (!enteredOtp) {
+            alert("You must enter an OTP.");
             return;
         }
 
+        // ✅ Step 3: Verify OTP with backend
+        return fetch("https://food-panda-server-cbwr.onrender.com/verify-otp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: enteredEmail, otp: enteredOtp })
+        });
+    })
+    .then(res => res ? res.json() : null)
+    .then(data => {
+        if (!data) return; // no response to handle
+
+        if (!data.success) {
+            alert("OTP verification failed: " + data.message);
+            return;
+        }
+
+        // ✅ Step 4: Let user set new password
         const newPassword = prompt("Enter your new password:");
 
         if (!newPassword || newPassword.length < 4) {
@@ -57,7 +67,7 @@ function forgetPassword() {
             return;
         }
 
-        // ✅ Update local user password
+        // ✅ Step 5: Update password in local storage
         user.password = newPassword;
 
         if (userList === "restaurantUsers") {
@@ -66,11 +76,11 @@ function forgetPassword() {
             localStorage.setItem("users", JSON.stringify(regularUsers));
         }
 
-        alert("Password has been reset successfully! Please login with your new password.");
+        alert("Password reset successfully! Please login with your new password.");
         window.location.href = "./signupPage.html"; // or login page
     })
     .catch(err => {
         console.error("Error:", err);
-        alert("An error occurred while sending the OTP.");
+        alert("An error occurred during the process.");
     });
 }
